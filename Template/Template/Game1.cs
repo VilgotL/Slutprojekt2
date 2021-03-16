@@ -11,6 +11,9 @@ namespace Template
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Player p;
+
         //Komentar
         public Game1()
         {
@@ -40,6 +43,8 @@ namespace Template
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            p = new Player(Content.Load<Texture2D>("xwing"), new Vector2(200, 300), new Rectangle(200, 300, 50, 50));
+
             // TODO: use this.Content to load your game content here 
         }
 
@@ -62,6 +67,7 @@ namespace Template
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            p.Update();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -76,6 +82,9 @@ namespace Template
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here.
+            spriteBatch.Begin();
+            p.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
