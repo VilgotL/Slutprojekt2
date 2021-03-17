@@ -43,7 +43,7 @@ namespace Template
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            p = new Player(Content.Load<Texture2D>("xwing"), new Vector2(200, 300), new Rectangle(200, 300, 50, 50));
+            p = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2(200, 300), new Rectangle(200, 300, 50, 50));
 
             // TODO: use this.Content to load your game content here 
         }
@@ -68,6 +68,12 @@ namespace Template
                 Exit();
 
             p.Update();
+
+            foreach(Bullet element in p.BulletList)
+            {
+                element.Update();
+            }
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -83,7 +89,14 @@ namespace Template
 
             // TODO: Add your drawing code here.
             spriteBatch.Begin();
+
+            foreach (Bullet element in p.BulletList)
+            {
+                element.Draw(spriteBatch);
+            }
+
             p.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -34,7 +34,7 @@ namespace Template
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            
+            spriteBatch.Draw(texture, rectangle, Color.White);
         }
     }
 }

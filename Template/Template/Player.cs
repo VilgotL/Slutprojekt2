@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace Template
 {
@@ -10,14 +12,23 @@ namespace Template
         protected float rotation;
         protected float rotationSpeed = .04f;
 
+        protected Texture2D bulletTexture;
+        protected List<Bullet> bulletList = new List<Bullet>();
+
         protected KeyboardState kNewState;
         protected KeyboardState kOldState;
 
-        public Player(Texture2D texture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
+        public Player(Texture2D texture, Texture2D bulletTexture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
         {
             this.texture = texture;
+            this.bulletTexture = bulletTexture;
             this.position = position;
             this.rectangle = rectangle;
+        }
+
+        public List<Bullet> BulletList
+        {
+            get { return bulletList; }
         }
 
         private void Move()
@@ -38,9 +49,20 @@ namespace Template
                 rotation -= rotationSpeed;
         }
 
+        private void Shoot()
+        {
+            kNewState = Keyboard.GetState();
+
+            if (kNewState.IsKeyDown(Keys.Space) && kOldState.IsKeyUp(Keys.Space))
+                bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation));
+
+            kOldState = kNewState;
+        }
+
         public override void Update()
         {
             Move();
+            Shoot();
             rectangle.Location = position.ToPoint();
         }
 
