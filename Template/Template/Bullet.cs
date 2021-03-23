@@ -23,13 +23,19 @@ namespace Template
 
         private void Move()
         {
-            ySpeed = Math.Sin(angle - Math.PI / 2);
-            xSpeed = Math.Cos(angle - Math.PI / 2);
+            ySpeed = totalSpeed * Math.Sin(angle - Math.PI / 2);
+            xSpeed = totalSpeed * Math.Cos(angle - Math.PI / 2);
 
             position.X += (float)xSpeed;
             position.Y += (float)ySpeed;
 
             rectangle.Location = position.ToPoint();
+        }
+
+        public void Delete()
+        {
+            totalSpeed = 0f;
+            position = new Vector2(1000, 800);
         }
 
         public override void Update()
