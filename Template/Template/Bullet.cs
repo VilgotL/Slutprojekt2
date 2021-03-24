@@ -9,7 +9,7 @@ namespace Template
     {
         protected double xSpeed;
         protected double ySpeed;
-        protected float totalSpeed = 5f;
+        protected float totalSpeed = 10f;
 
         protected float angle;
 

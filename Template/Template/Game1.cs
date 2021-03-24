@@ -13,12 +13,14 @@ namespace Template
         SpriteBatch spriteBatch;
 
         Player player;
-        Enemy1 enemy;
+        EnemyListClass enemyListObject;
 
         //Komentar
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            graphics.PreferredBackBufferHeight = 800;
             Content.RootDirectory = "Content";
         }
 
@@ -44,8 +46,10 @@ namespace Template
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            player = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2(200, 300), new Rectangle(200, 300, 50, 50));
-            enemy = new Enemy1(Content.Load<Texture2D>("xwingRotated"), new Vector2(300, -50), new Rectangle(300, -100, 50, 50));
+            player = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2(300, 700), new Rectangle(300, 600, 50, 50));
+
+            enemyListObject = new EnemyListClass(Content.Load<Texture2D>("xwingRotated"), Content.Load<Texture2D>("bullet4"));
+            enemyListObject.StartTimer();
 
             // TODO: use this.Content to load your game content here 
         }
@@ -70,17 +74,26 @@ namespace Template
                 Exit();
 
             player.Update();
-            enemy.Update();
 
-            foreach(Bullet element in player.BulletList)
+            enemyListObject.Update();
+
+            foreach (EnemyClass element in enemyListObject.EnemyList)
             {
                 element.Update();
+            }
 
-                if (element.Rectangle.Intersects(enemy.Rectangle))
+            foreach(Bullet bullet in player.BulletList)
+            {
+                bullet.Update();
+
+                foreach (EnemyClass enemy in enemyListObject.EnemyList)
                 {
-                    element.Delete();
-                    enemy.Damage();
-                }
+                    if (bullet.Rectangle.Intersects(enemy.Rectangle))
+                    {
+                        bullet.Delete();
+                        enemy.Damage();
+                    }
+                }         
             }
 
             // TODO: Add your update logic here
@@ -104,8 +117,12 @@ namespace Template
                 element.Draw(spriteBatch);
             }
 
+            foreach (EnemyClass element in enemyListObject.EnemyList)
+            {
+                element.Draw(spriteBatch);
+            }
+
             player.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
 
             spriteBatch.End();
 
