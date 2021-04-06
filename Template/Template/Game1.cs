@@ -122,6 +122,14 @@ namespace Template
                 element.Draw(spriteBatch);
             }
 
+            try
+            {
+                foreach (Enemy3 element in enemyListObject.EnemyList)
+                {
+
+                }
+            }
+
             player.Draw(spriteBatch);
 
             spriteBatch.End();

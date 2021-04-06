@@ -29,6 +29,11 @@ namespace Template
             shootTimer.Start();
         }
 
+        public List<Bullet> BulletList
+        {
+            get { return bulletList; }
+        }
+
         private void RestartTimer()
         {
             shootTimer.Stop();
@@ -40,13 +45,15 @@ namespace Template
         {
             if (shootTimer.ElapsedMilliseconds > 1000)
             {
-                bulletList.Add(
+                bulletList.Add(new Bullet(bulletTexture, position, new Rectangle((int)position.X, (int)position.Y, 10, 10), (float)((3 / 2) * Math.PI)));
+                RestartTimer();
             }
         }
 
         public override void Update()
         {
             base.Update();
+            Shoot();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
