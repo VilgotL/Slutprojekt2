@@ -7,52 +7,44 @@ using System.Diagnostics;
 
 namespace Template
 {
-    class EnemyListClass
+    static class EnemyListClass
     {
-        protected List<EnemyClass> enemyList = new List<EnemyClass>();
+        public static List<EnemyClass> enemyList = new List<EnemyClass>();
 
-        protected Texture2D enemyTexture;
+        public static Texture2D enemyTexture;
 
-        protected Texture2D bulletTexture;
+        public static Texture2D bulletTexture;
 
-        protected Stopwatch spawnTimer = new Stopwatch();
+        public static Stopwatch spawnTimer = new Stopwatch();
 
-        Random random = new Random();
+        public static Random random = new Random();
 
-        public EnemyListClass(Texture2D enemyTexture, Texture2D bulletTexture)
-        {
-            this.enemyTexture = enemyTexture;
-            this.bulletTexture = bulletTexture;
-        }
-
-        public List<EnemyClass> EnemyList
-        {
-            get { return enemyList; }
-        }
-
-        private void SpawnEnemy()
+        private static void SpawnEnemy()
         {
             int randomNumber = random.Next(1, 101);
 
-            if (randomNumber <= 70)
+            if (randomNumber <= 34)
                 enemyList.Add(new Enemy1(enemyTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 50, 50)));
+            else if (randomNumber <= 67)
+                enemyList.Add(new Enemy2(enemyTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 50, 50)));
             else
                 enemyList.Add(new Enemy3(enemyTexture, bulletTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 50, 50)));
+
         }
 
-        public void StartTimer()
+        public static void StartTimer()
         {
             spawnTimer.Start();
         }
 
-        private void RestartTimer()
+        private static void RestartTimer()
         {
             spawnTimer.Stop();
             spawnTimer.Reset();
             spawnTimer.Start();
         }
 
-        public void Update()
+        public static void Update()
         {
             if (spawnTimer.ElapsedMilliseconds > 2000)
             {

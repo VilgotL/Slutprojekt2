@@ -13,7 +13,6 @@ namespace Template
         SpriteBatch spriteBatch;
 
         Player player;
-        EnemyListClass enemyListObject;
 
         //Komentar
         public Game1()
@@ -48,8 +47,9 @@ namespace Template
 
             player = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2(300, 700), new Rectangle(300, 600, 50, 50));
 
-            enemyListObject = new EnemyListClass(Content.Load<Texture2D>("xwingRotated"), Content.Load<Texture2D>("bullet4"));
-            enemyListObject.StartTimer();
+            EnemyListClass.bulletTexture = Content.Load<Texture2D>("bullet4");
+            EnemyListClass.enemyTexture = Content.Load<Texture2D>("xwingRotated");
+            EnemyListClass.StartTimer();
 
             // TODO: use this.Content to load your game content here 
         }
@@ -75,25 +75,50 @@ namespace Template
 
             player.Update();
 
-            enemyListObject.Update();
+            EnemyListClass.Update();
 
-            foreach (EnemyClass element in enemyListObject.EnemyList)
+            foreach (EnemyClass element in EnemyListClass.enemyList)
             {
                 element.Update();
+
+                if (element.Rectangle.Intersects(player.Rectangle))
+                {
+                    element.Die();
+                    player.Damage();
+
+                    if (player.Lives <= 0)
+                        Exit();
+                }
             }
 
-            foreach(Bullet bullet in player.BulletList)
+            foreach(Bullet element in player.BulletList)
             {
-                bullet.Update();
+                element.Update();
 
-                foreach (EnemyClass enemy in enemyListObject.EnemyList)
+                foreach (EnemyClass enemyElement in EnemyListClass.enemyList)
                 {
-                    if (bullet.Rectangle.Intersects(enemy.Rectangle))
+                    if (element.Rectangle.Intersects(enemyElement.Rectangle))
                     {
-                        bullet.Delete();
-                        enemy.Damage();
+                        element.Delete();
+                        enemyElement.Damage();
                     }
                 }         
+            }
+
+            foreach (Bullet element in Enemy3.BulletList)
+            {
+                element.Update();
+
+                if (element.Rectangle.Intersects(player.Rectangle)) 
+                {
+                    element.Delete();
+                    player.Damage();
+
+                    if (player.Lives <= 0)
+                    {
+                        Exit();
+                    }
+                }
             }
 
             // TODO: Add your update logic here
@@ -117,17 +142,14 @@ namespace Template
                 element.Draw(spriteBatch);
             }
 
-            foreach (EnemyClass element in enemyListObject.EnemyList)
+            foreach (Bullet element in Enemy3.BulletList)
             {
                 element.Draw(spriteBatch);
             }
 
-            try
+            foreach (EnemyClass element in EnemyListClass.enemyList)
             {
-                foreach (Enemy3 element in enemyListObject.EnemyList)
-                {
-
-                }
+                element.Draw(spriteBatch);
             }
 
             player.Draw(spriteBatch);

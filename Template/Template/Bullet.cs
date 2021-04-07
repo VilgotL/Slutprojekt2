@@ -9,16 +9,17 @@ namespace Template
     {
         protected double xSpeed;
         protected double ySpeed;
-        protected float totalSpeed = 10f;
+        protected float totalSpeed;
 
         protected float angle;
 
-        public Bullet(Texture2D texture, Vector2 position, Rectangle rectangle, float angle) :base(texture, position, rectangle)
+        public Bullet(Texture2D texture, Vector2 position, Rectangle rectangle, float angle, float totalSpeed) :base(texture, position, rectangle)
         {
             this.texture = texture;
             this.position = position;
             this.rectangle = rectangle;
             this.angle = angle;
+            this.totalSpeed = totalSpeed;
         }
 
         private void Move()

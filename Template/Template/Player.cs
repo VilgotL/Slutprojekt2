@@ -10,7 +10,9 @@ namespace Template
     {
         protected float speed = 3f;
         protected float rotation;
-        protected float rotationSpeed = .04f;
+        protected float rotationSpeed = .03f;
+
+        protected int lives = 3;
 
         protected Texture2D bulletTexture;
         protected List<Bullet> bulletList = new List<Bullet>();
@@ -29,6 +31,16 @@ namespace Template
         public List<Bullet> BulletList
         {
             get { return bulletList; }
+        }
+
+        public int Lives
+        {
+            get { return lives; }
+        }
+
+        public void Damage()
+        {
+            lives--;
         }
 
         private void Move()
@@ -54,7 +66,7 @@ namespace Template
             kNewState = Keyboard.GetState();
 
             if (kNewState.IsKeyDown(Keys.Space) && kOldState.IsKeyUp(Keys.Space))
-                bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation));
+                bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation, 10f));
 
             kOldState = kNewState;
         }

@@ -26,7 +26,7 @@ namespace Template
                 Die();
         }
 
-        private void Die()
+        public void Die()
         {
             ySpeed = 0f;
             position = new Vector2(1000, 1000);

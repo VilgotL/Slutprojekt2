@@ -9,7 +9,7 @@ namespace Template
 {
     class Enemy3 : EnemyClass
     {
-        protected List<Bullet> bulletList = new List<Bullet>();
+        protected static List<Bullet> bulletList = new List<Bullet>();
 
         protected Texture2D bulletTexture;
 
@@ -29,7 +29,7 @@ namespace Template
             shootTimer.Start();
         }
 
-        public List<Bullet> BulletList
+        public static List<Bullet> BulletList
         {
             get { return bulletList; }
         }
@@ -45,7 +45,7 @@ namespace Template
         {
             if (shootTimer.ElapsedMilliseconds > 1000)
             {
-                bulletList.Add(new Bullet(bulletTexture, position, new Rectangle((int)position.X, (int)position.Y, 10, 10), (float)((3 / 2) * Math.PI)));
+                bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X + 20, position.Y + 12), new Rectangle((int)position.X + 20, (int)position.Y + 12, 10, 10), (float)((3 / 2) * Math.PI), 5f));
                 RestartTimer();
             }
         }
