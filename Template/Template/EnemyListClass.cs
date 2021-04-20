@@ -17,6 +17,8 @@ namespace Template
 
         public static Stopwatch spawnTimer = new Stopwatch();
 
+        public static float spawnTime = 1000;
+
         public static Random random = new Random();
 
         private static void SpawnEnemy()
@@ -46,7 +48,7 @@ namespace Template
 
         public static void Update()
         {
-            if (spawnTimer.ElapsedMilliseconds > 2000)
+            if (spawnTimer.ElapsedMilliseconds > spawnTime)
             {
                 SpawnEnemy();
                 RestartTimer();

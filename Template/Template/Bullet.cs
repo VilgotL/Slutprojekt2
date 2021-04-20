@@ -33,7 +33,7 @@ namespace Template
             rectangle.Location = position.ToPoint();
         }
 
-        public void Delete()
+        public void Damage()
         {
             totalSpeed = 0f;
             position = new Vector2(1000, 800);

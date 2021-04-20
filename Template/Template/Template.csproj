@@ -49,6 +49,7 @@
     <Compile Include="EnemyClass.cs" />
     <Compile Include="EnemyListClass.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="IDamageable.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

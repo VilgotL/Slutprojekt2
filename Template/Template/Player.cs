@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Template
 {
-    class Player : BaseClass
+    class Player : BaseClass, IDamageable
     {
         protected float speed = 3f;
         protected float rotation;
