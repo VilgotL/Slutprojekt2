@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Template
 {
-    interface IDamageable
+    interface IShootable
     {
-        void Damage();
+        void Shoot();
     }
 }

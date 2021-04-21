@@ -99,7 +99,7 @@ namespace Template
                 {
                     if (element.Rectangle.Intersects(enemyElement.Rectangle))
                     {
-                        element.Delete();
+                        element.Damage();
                         enemyElement.Damage();
                     }
                 }         
@@ -111,7 +111,7 @@ namespace Template
 
                 if (element.Rectangle.Intersects(player.Rectangle)) 
                 {
-                    element.Delete();
+                    element.Damage();
                     player.Damage();
 
                     if (player.Lives <= 0)

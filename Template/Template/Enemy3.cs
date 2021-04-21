@@ -41,7 +41,7 @@ namespace Template
             shootTimer.Start();
         }
 
-        private void Shoot()
+        public void Shoot()
         {
             if (shootTimer.ElapsedMilliseconds > 1000)
             {

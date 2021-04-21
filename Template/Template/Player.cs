@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Template
 {
-    class Player : BaseClass, IDamageable
+    class Player : BaseClass, IDamageable, IShootable
     {
         protected float speed = 3f;
         protected float rotation;
@@ -61,7 +61,7 @@ namespace Template
                 rotation -= rotationSpeed;
         }
 
-        private void Shoot()
+        public void Shoot()
         {
             kNewState = Keyboard.GetState();
 
