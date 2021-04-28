@@ -38,6 +38,11 @@ namespace Template
             get { return lives; }
         }
 
+        public void AddLife()
+        {
+            lives++;
+        }
+
         public void Damage()
         {
             lives--;

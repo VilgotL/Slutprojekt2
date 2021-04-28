@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Template
 {
-    class Enemy3 : EnemyClass
+    class Enemy3 : EnemyClass, IShootable
     {
         protected static List<Bullet> bulletList = new List<Bullet>();
 

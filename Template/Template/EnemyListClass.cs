@@ -28,7 +28,7 @@ namespace Template
             if (randomNumber <= 34)
                 enemyList.Add(new Enemy1(enemyTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 50, 50)));
             else if (randomNumber <= 67)
-                enemyList.Add(new Enemy2(enemyTexture, new Vector2(random.Next(0, 723), -50), new Rectangle(325, -50, 50, 50)));
+                enemyList.Add(new Enemy2(enemyTexture, new Vector2(random.Next(30, 723), -50), new Rectangle(325, -50, 50, 50)));
             else
                 enemyList.Add(new Enemy3(enemyTexture, bulletTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 50, 50)));
 

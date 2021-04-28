@@ -5,7 +5,7 @@ using System;
 
 namespace Template
 {
-    class Bullet : BaseClass
+    class Bullet : BaseClass, IDamageable
     {
         protected double xSpeed;
         protected double ySpeed;

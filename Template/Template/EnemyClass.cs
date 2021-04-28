@@ -5,7 +5,7 @@ using System;
 
 namespace Template
 {
-    class EnemyClass : BaseClass
+    class EnemyClass : BaseClass, IDamageable
     {
         protected float ySpeed;
         protected float xSpeed;

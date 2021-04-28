@@ -51,6 +51,9 @@ namespace Template
             EnemyListClass.enemyTexture = Content.Load<Texture2D>("xwingRotated");
             EnemyListClass.StartTimer();
 
+            ItemListClass.lifeTexture = Content.Load<Texture2D>("heart3");
+            ItemListClass.StartTimer();
+
             // TODO: use this.Content to load your game content here 
         }
 
@@ -76,6 +79,7 @@ namespace Template
             player.Update();
 
             EnemyListClass.Update();
+            ItemListClass.Update();
 
             foreach (EnemyClass element in EnemyListClass.enemyList)
             {
@@ -88,6 +92,17 @@ namespace Template
 
                     if (player.Lives <= 0)
                         Exit();
+                }
+            }
+
+            foreach (Item element in ItemListClass.itemList)
+            {
+                element.Update();
+
+                if (element.Rectangle.Intersects(player.Rectangle))
+                {
+                    element.Remove();
+                    player.AddLife();
                 }
             }
 
@@ -148,6 +163,11 @@ namespace Template
             }
 
             foreach (EnemyClass element in EnemyListClass.enemyList)
+            {
+                element.Draw(spriteBatch);
+            }
+
+            foreach (Item element in ItemListClass.itemList)
             {
                 element.Draw(spriteBatch);
             }

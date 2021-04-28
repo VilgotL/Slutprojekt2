@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Template
 {
@@ -20,6 +21,17 @@ namespace Template
         {
             position.X += xSpeed;
             position.Y += ySpeed;
+
+            if (position.X > 720 || position.X < 30)
+                xSpeed = -xSpeed;
+        }
+
+        public void Remove()
+        {
+            ySpeed = 0f;
+            xSpeed = 0f;
+
+            position = new Vector2(1200, 800);
         }
 
         public override void Update()
