@@ -7,8 +7,10 @@ namespace Template
 {
     class Item: BaseClass
     {
-        protected float xSpeed;
-        protected float ySpeed;
+        protected float xSpeed = 0f;
+        protected float ySpeed = 1.5f;
+        protected Random random1 = new Random();
+        protected Random random2 = new Random();
 
         public Item(Texture2D texture, Vector2 position, Rectangle rectangle):base(texture, position, rectangle)
         {

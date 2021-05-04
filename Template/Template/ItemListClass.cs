@@ -12,6 +12,7 @@ namespace Template
         public static List<Item> itemList = new List<Item>();
 
         public static Texture2D lifeTexture;
+        public static Texture2D multiBulletTexture;
 
         public static Stopwatch spawnTimer = new Stopwatch();
 
@@ -21,7 +22,12 @@ namespace Template
 
         public static void SpawnItem()
         {
-            itemList.Add(new Life(lifeTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 30, 30)));
+            int randomNumber = random.Next(1, 101);
+
+            if (randomNumber > 20)
+                itemList.Add(new Life(lifeTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 30, 30)));
+            else
+                itemList.Add(new MultiBullet(multiBulletTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 30, 30)));
         }
 
         public static void StartTimer()

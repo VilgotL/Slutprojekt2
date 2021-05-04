@@ -5,9 +5,9 @@ using System;
 
 namespace Template
 {
-    class Life: Item
+    class MultiBullet : Item
     {
-        public Life(Texture2D texture, Vector2 position, Rectangle rectangle):base(texture, position, rectangle)
+        public MultiBullet(Texture2D texture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
         {
             this.texture = texture;
             this.position = position;

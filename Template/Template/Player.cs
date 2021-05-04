@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Template
 {
@@ -13,6 +14,10 @@ namespace Template
         protected float rotationSpeed = .03f;
 
         protected int lives = 3;
+
+        protected bool multiBulletActive = false;
+        protected Stopwatch multiBulletTimer = new Stopwatch();
+        protected float multiBulletTime = 10000f;
 
         protected Texture2D bulletTexture;
         protected List<Bullet> bulletList = new List<Bullet>();
@@ -43,6 +48,19 @@ namespace Template
             lives++;
         }
 
+        public void ActivateMultiBullet()
+        {
+            multiBulletActive = true;
+            multiBulletTimer.Start();
+        }
+
+        private void DeactivateMultiBullet()
+        {
+            multiBulletTimer.Stop();
+            multiBulletTimer.Reset();
+            multiBulletActive = false;
+        }
+
         public void Damage()
         {
             lives--;
@@ -71,7 +89,21 @@ namespace Template
             kNewState = Keyboard.GetState();
 
             if (kNewState.IsKeyDown(Keys.Space) && kOldState.IsKeyUp(Keys.Space))
-                bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation, 10f));
+            {
+                if (!multiBulletActive)
+                {
+                    bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation, 10f));
+                }
+                else
+                {
+                    bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation - (float)(Math.PI / 8), 10f));
+                    bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation - (float)(Math.PI / 16), 10f));
+                    bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation, 10f));
+                    bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation + (float)(Math.PI / 16), 10f));
+                    bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X - 4, position.Y - 12), new Rectangle((int)position.X - 4, (int)position.Y - 12, 10, 10), rotation + (float)(Math.PI / 8), 10f));
+                }
+            }
+                
 
             kOldState = kNewState;
         }
@@ -80,6 +112,10 @@ namespace Template
         {
             Move();
             Shoot();
+
+            if (multiBulletTimer.ElapsedMilliseconds > multiBulletTime)
+                DeactivateMultiBullet();
+
             rectangle.Location = position.ToPoint();
         }
 

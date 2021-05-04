@@ -45,13 +45,14 @@ namespace Template
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            player = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2(300, 700), new Rectangle(300, 600, 50, 50));
+            player = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2(300, 700), new Rectangle(300, 700, 50, 50));
 
             EnemyListClass.bulletTexture = Content.Load<Texture2D>("bullet4");
             EnemyListClass.enemyTexture = Content.Load<Texture2D>("xwingRotated");
             EnemyListClass.StartTimer();
 
             ItemListClass.lifeTexture = Content.Load<Texture2D>("heart3");
+            ItemListClass.multiBulletTexture = Content.Load<Texture2D>("star2");
             ItemListClass.StartTimer();
 
             // TODO: use this.Content to load your game content here 
@@ -101,8 +102,16 @@ namespace Template
 
                 if (element.Rectangle.Intersects(player.Rectangle))
                 {
-                    element.Remove();
-                    player.AddLife();
+                    if (element is Life)
+                    {
+                        element.Remove();
+                        player.AddLife();
+                    }
+                    else if (element is MultiBullet)
+                    {
+                        element.Remove();
+                        player.ActivateMultiBullet();
+                    }
                 }
             }
 
