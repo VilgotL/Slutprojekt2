@@ -43,12 +43,12 @@ namespace Template
             get { return lives; }
         }
 
-        public void AddLife()
+        private void AddLife()
         {
             lives++;
         }
 
-        public void ActivateMultiBullet()
+        private void ActivateMultiBullet()
         {
             multiBulletActive = true;
             multiBulletTimer.Start();
@@ -108,10 +108,29 @@ namespace Template
             kOldState = kNewState;
         }
 
+        private void UseItem()
+        {
+            kNewState = Keyboard.GetState();
+
+            if (kNewState.IsKeyDown(Keys.Enter))
+            {
+                if (ItemListClass.itemQueue.Count > 0)
+                {
+                    if (ItemListClass.itemQueue.Dequeue() is Life)
+                        AddLife();
+                    else if (ItemListClass.itemQueue.Dequeue() is MultiBullet)
+                        ActivateMultiBullet();
+                }           
+            }
+
+            kOldState = kNewState;
+        }
+
         public override void Update()
         {
             Move();
             Shoot();
+            UseItem();
 
             if (multiBulletTimer.ElapsedMilliseconds > multiBulletTime)
                 DeactivateMultiBullet();

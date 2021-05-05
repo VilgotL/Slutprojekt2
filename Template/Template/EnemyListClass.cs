@@ -12,7 +12,6 @@ namespace Template
         public static List<EnemyClass> enemyList = new List<EnemyClass>();
 
         public static Texture2D enemyTexture;
-
         public static Texture2D bulletTexture;
 
         public static Stopwatch spawnTimer = new Stopwatch();

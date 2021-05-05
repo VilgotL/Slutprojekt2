@@ -14,6 +14,8 @@ namespace Template
         public static Texture2D lifeTexture;
         public static Texture2D multiBulletTexture;
 
+        public static Queue<Item> itemQueue = new Queue<Item>();
+
         public static Stopwatch spawnTimer = new Stopwatch();
 
         public static float spawnTime = 4900;
@@ -28,6 +30,11 @@ namespace Template
                 itemList.Add(new Life(lifeTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 30, 30)));
             else
                 itemList.Add(new MultiBullet(multiBulletTexture, new Vector2(random.Next(0, 751), -50), new Rectangle(325, -50, 30, 30)));
+        }
+
+        public static void AddItem(Item item)
+        {
+            itemQueue.Enqueue(item);
         }
 
         public static void StartTimer()

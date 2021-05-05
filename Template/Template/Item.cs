@@ -19,7 +19,7 @@ namespace Template
             this.rectangle = rectangle;
         }
 
-        private void Move()
+        private void Move() 
         {
             position.X += xSpeed;
             position.Y += ySpeed;

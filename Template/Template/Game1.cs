@@ -102,16 +102,8 @@ namespace Template
 
                 if (element.Rectangle.Intersects(player.Rectangle))
                 {
-                    if (element is Life)
-                    {
-                        element.Remove();
-                        player.AddLife();
-                    }
-                    else if (element is MultiBullet)
-                    {
-                        element.Remove();
-                        player.ActivateMultiBullet();
-                    }
+                    element.Remove();
+                    ItemListClass.AddItem(element);   
                 }
             }
 
