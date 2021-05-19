@@ -28,6 +28,7 @@ namespace Template
 
         public void Die()
         {
+            //Tar bort
             ySpeed = 0f;
             position = new Vector2(1000, 1000);
         }
@@ -41,6 +42,7 @@ namespace Template
         public override void Update()
         {
             Move();
+            //Flyttar hitboxen till rätt position
             rectangle.Location = position.ToPoint();
         }
 

@@ -7,6 +7,7 @@ namespace Template
 {
     class Enemy2 : EnemyClass
     {
+        //ska kunna ändra vinkel
         protected float rotation = -1f;
 
         public Enemy2(Texture2D texture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
@@ -22,6 +23,7 @@ namespace Template
 
         private void Move()
         {
+            //Studsa
             if (position.X > 720 || position.X < 30)
             {
                 xSpeed = -xSpeed;
@@ -37,6 +39,7 @@ namespace Template
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            //Gör så att den kan rotera
             spriteBatch.Draw(texture, rectangle, null, Color.LightBlue, rotation, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 0);
         }
     }

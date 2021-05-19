@@ -9,8 +9,6 @@ namespace Template
     {
         protected float xSpeed = 0f;
         protected float ySpeed = 1.5f;
-        protected Random random1 = new Random();
-        protected Random random2 = new Random();
 
         public Item(Texture2D texture, Vector2 position, Rectangle rectangle):base(texture, position, rectangle)
         {
@@ -24,6 +22,7 @@ namespace Template
             position.X += xSpeed;
             position.Y += ySpeed;
 
+            //Studsar
             if (position.X > 720 || position.X < 30)
                 xSpeed = -xSpeed;
         }

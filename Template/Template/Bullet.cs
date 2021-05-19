@@ -24,17 +24,20 @@ namespace Template
 
         private void Move()
         {
+            //Ändrar hastigheten på x och y beroende på vinkeln
             ySpeed = totalSpeed * Math.Sin(angle - Math.PI / 2);
             xSpeed = totalSpeed * Math.Cos(angle - Math.PI / 2);
 
             position.X += (float)xSpeed;
             position.Y += (float)ySpeed;
 
+            //Flyttar hitboxen till rätt position
             rectangle.Location = position.ToPoint();
         }
 
         public void Damage()
         {
+            //Tar bort 
             totalSpeed = 0f;
             position = new Vector2(1000, 800);
         }

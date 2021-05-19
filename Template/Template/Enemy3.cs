@@ -13,6 +13,7 @@ namespace Template
 
         protected Texture2D bulletTexture;
 
+        //Timer för att beräkna tiden sedan senaste skottet
         protected Stopwatch shootTimer = new Stopwatch();
 
         public Enemy3(Texture2D texture, Texture2D bulletTexture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
@@ -43,6 +44,7 @@ namespace Template
 
         public void Shoot()
         {
+            //Skjuter om det har gått 1 sekund sedan förra skottet
             if (shootTimer.ElapsedMilliseconds > 1000)
             {
                 bulletList.Add(new Bullet(bulletTexture, new Vector2(position.X + 20, position.Y + 12), new Rectangle((int)position.X + 20, (int)position.Y + 12, 10, 10), (float)((3 / 2) * Math.PI), 5f));

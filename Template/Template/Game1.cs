@@ -14,11 +14,18 @@ namespace Template
 
         Player player;
 
+        enum PlayerStartPos
+		{
+            X = 300,
+            Y = 700
+		}
+
         //Komentar
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
 
+            //Höjd: 800
             graphics.PreferredBackBufferHeight = 800;
             Content.RootDirectory = "Content";
         }
@@ -45,7 +52,7 @@ namespace Template
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            player = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2(300, 700), new Rectangle(300, 700, 50, 50));
+            player = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2((int)PlayerStartPos.X, (int)PlayerStartPos.Y), new Rectangle(300, 700, 50, 50));
 
             EnemyListClass.bulletTexture = Content.Load<Texture2D>("bullet4");
             EnemyListClass.enemyTexture = Content.Load<Texture2D>("xwingRotated");
@@ -53,7 +60,16 @@ namespace Template
 
             ItemListClass.lifeTexture = Content.Load<Texture2D>("heart3");
             ItemListClass.multiBulletTexture = Content.Load<Texture2D>("star2");
+            ItemListClass.shieldTexture = Content.Load<Texture2D>("shield");
             ItemListClass.StartTimer();
+
+            Points.pointsPosition = new Vector2(660, 50);
+            Points.highScorePosition = new Vector2(660, 70);
+            Points.font = Content.Load<SpriteFont>("Text");
+            Points.ReadHighScore();
+
+            Lives.position = new Vector2(660, 30);
+            Lives.font = Content.Load<SpriteFont>("Text");
 
             // TODO: use this.Content to load your game content here 
         }
@@ -82,6 +98,7 @@ namespace Template
             EnemyListClass.Update();
             ItemListClass.Update();
 
+            //Tar bort fiende och skadar spelaren om en fiende kolliderar med spelaren
             foreach (EnemyClass element in EnemyListClass.enemyList)
             {
                 element.Update();
@@ -91,11 +108,15 @@ namespace Template
                     element.Die();
                     player.Damage();
 
-                    if (player.Lives <= 0)
+                    if (Lives.lives <= 0)
+					{
+                        Points.WriteHighScore();
                         Exit();
+                    }                     
                 }
             }
 
+            //Lägger till item i item-kön om den kolliderar med spelaren
             foreach (Item element in ItemListClass.itemList)
             {
                 element.Update();
@@ -107,6 +128,7 @@ namespace Template
                 }
             }
 
+            //Om ett skott kolliderar med en fiende dödas fienden 
             foreach(Bullet element in player.BulletList)
             {
                 element.Update();
@@ -117,10 +139,13 @@ namespace Template
                     {
                         element.Damage();
                         enemyElement.Damage();
+                        player.AddPoint();
+                        EnemyListClass.DecreaseSpawnTime();
                     }
                 }         
             }
 
+            //Fiendens skott skadar spelaren
             foreach (Bullet element in Enemy3.BulletList)
             {
                 element.Update();
@@ -130,8 +155,9 @@ namespace Template
                     element.Damage();
                     player.Damage();
 
-                    if (player.Lives <= 0)
+                    if (Lives.lives <= 0)
                     {
+                        Points.WriteHighScore();
                         Exit();
                     }
                 }
@@ -152,6 +178,10 @@ namespace Template
 
             // TODO: Add your drawing code here.
             spriteBatch.Begin();
+
+            Lives.Draw(spriteBatch);
+            Points.Draw(spriteBatch);
+            ItemListClass.Draw(spriteBatch);
 
             foreach (Bullet element in player.BulletList)
             {
