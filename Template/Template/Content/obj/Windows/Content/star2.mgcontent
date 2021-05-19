@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Elev/Downloads/Slutprojekt2-master (3)/Slutprojekt2-master/Template/Template/Content/star2.png</SourceFile>
-  <SourceTime>2021-05-04T10:34:49.3452513+02:00</SourceTime>
-  <DestFile>C:/Users/Elev/Downloads/Slutprojekt2-master (3)/Slutprojekt2-master/Template/Template/Content/bin/Windows/Content/star2.xnb</DestFile>
-  <DestTime>2021-05-04T10:35:50.3585053+02:00</DestTime>
+  <SourceFile>C:/Users/vilgo/OneDrive/Skrivbord/Slutprojekt2-master/Template/Template/Content/star2.png</SourceFile>
+  <SourceTime>2021-05-05T09:17:15+02:00</SourceTime>
+  <DestFile>C:/Users/vilgo/OneDrive/Skrivbord/Slutprojekt2-master/Template/Template/Content/bin/Windows/Content/star2.xnb</DestFile>
+  <DestTime>2021-05-18T17:57:11.6723581+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T17:35:54+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
