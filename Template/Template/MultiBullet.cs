@@ -7,6 +7,12 @@ namespace Template
 {
     class MultiBullet : Item
     {
+        ///<summary>
+        ///KOnstruktor för multibullet
+        ///</summary>
+        ///<param name="texture">textur för multibullet</param>
+        ///<param name="position">Position för multibullet</param>
+        ///<param name="rectangle">Hitbox för multibullet</param>
         public MultiBullet(Texture2D texture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
         {
             this.texture = texture;
