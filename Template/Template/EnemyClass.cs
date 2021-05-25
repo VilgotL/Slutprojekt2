@@ -7,10 +7,17 @@ namespace Template
 {
     class EnemyClass : BaseClass, IDamageable
     {
+        //hastighet och antal liv för fienden
         protected float ySpeed;
         protected float xSpeed;
         protected int lives;
 
+        ///<summary>
+        ///konstruktor för fienden
+        ///</summary>
+        ///<param name="texture">textur för fienden</param>
+        ///<param name="position">Position för fienden>
+        ///<param name="rectangle">Hitbox för fienden</param>
         public EnemyClass(Texture2D texture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
         {
             this.texture = texture;
@@ -18,6 +25,9 @@ namespace Template
             this.rectangle = rectangle;
         }
 
+        ///<summary>
+        ///Skadar fienden och dödar den om den förlorat alla sina liv
+        ///</summary>
         public void Damage()
         {
             lives--;
@@ -26,6 +36,9 @@ namespace Template
                 Die();
         }
 
+        ///<summary>
+        ///dödar fienden
+        ///</summary>
         public void Die()
         {
             //Tar bort
@@ -33,6 +46,9 @@ namespace Template
             position = new Vector2(1000, 1000);
         }
 
+        ///<summary>
+        ///Flyttar fienden
+        ///</summary>
         private void Move()
         {
             position.Y += ySpeed;
