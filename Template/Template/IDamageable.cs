@@ -6,6 +6,9 @@ namespace Template
 {
     interface IDamageable
     {
+        /// <summary>
+        /// Gör så att objektet skadas
+        /// </summary>
         void Damage();
     }
 }

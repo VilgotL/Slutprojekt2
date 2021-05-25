@@ -11,11 +11,11 @@ namespace Template
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-	
-	//Spelaren
+
+	    //Spelaren
         Player player;
 
-	//Startposition för spelaren
+    	//Startposition för spelaren
         enum PlayerStartPos
 		{
             X = 300,
@@ -54,27 +54,27 @@ namespace Template
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-	    //Laddar in spelaren
+	       //Laddar in spelaren
             player = new Player(Content.Load<Texture2D>("xwing"), Content.Load<Texture2D>("bullet4"), new Vector2((int)PlayerStartPos.X, (int)PlayerStartPos.Y), new Rectangle(300, 700, 50, 50));
 
-	    //Laddar in fienderna
+	        //Laddar in fiendetexturerna
             EnemyListClass.bulletTexture = Content.Load<Texture2D>("bullet4");
             EnemyListClass.enemyTexture = Content.Load<Texture2D>("xwingRotated");
             EnemyListClass.StartTimer();
 
-	    //Laddar in item-texturer
+	       //Laddar in item-texturer
             ItemListClass.lifeTexture = Content.Load<Texture2D>("heart3");
             ItemListClass.multiBulletTexture = Content.Load<Texture2D>("star2");
             ItemListClass.shieldTexture = Content.Load<Texture2D>("shield");
             ItemListClass.StartTimer();
 
-	    //Laddar in värden för poängräknaren
+	        //Laddar in värden för poängräknaren
             Points.pointsPosition = new Vector2(660, 50);
             Points.highScorePosition = new Vector2(660, 70);
             Points.font = Content.Load<SpriteFont>("Text");
             Points.ReadHighScore();
 
-	    //Position och typsnitt för Livräknaren
+	        //Position och typsnitt för Livräknaren
             Lives.position = new Vector2(660, 30);
             Lives.font = Content.Load<SpriteFont>("Text");
 
@@ -171,6 +171,7 @@ namespace Template
                 }
             }
 
+            
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -187,7 +188,7 @@ namespace Template
             // TODO: Add your drawing code here.
             spriteBatch.Begin();
 
-	    //Ritar ut allt i spelet
+	        //Ritar ut allt i spelet
 
             Lives.Draw(spriteBatch);
             Points.Draw(spriteBatch);

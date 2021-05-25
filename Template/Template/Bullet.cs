@@ -37,7 +37,7 @@ namespace Template
         ///</summary>
         private void Move()
         {
-            //Ändrar hastigheten på x och y beroende på vinkeln
+            //Ändrar hastigheten på x och y beroende på vinkeln och totala hastigheten
             ySpeed = totalSpeed * Math.Sin(angle - Math.PI / 2);
             xSpeed = totalSpeed * Math.Cos(angle - Math.PI / 2);
 
@@ -48,9 +48,6 @@ namespace Template
             rectangle.Location = position.ToPoint();
         }
 
-        ///<summary>
-        ///Gör skada på skottet (tar bort det)
-        ///</summary>
         public void Damage()
         {
             //Tar bort 

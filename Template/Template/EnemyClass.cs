@@ -25,9 +25,6 @@ namespace Template
             this.rectangle = rectangle;
         }
 
-        ///<summary>
-        ///Skadar fienden och dödar den om den förlorat alla sina liv
-        ///</summary>
         public void Damage()
         {
             lives--;

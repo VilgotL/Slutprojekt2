@@ -13,7 +13,7 @@ namespace Template
         ///<summary>
         ///Konstruktor för Enemy2
         ///</summary>
-        ///<param name="texture">Texture för fienden</param>
+        ///<param name="texture">Textur för fienden</param>
         ///<param name="position">Position för fienden</param>
         ///<param name="rectangle">Hitbox för fienden</param>
         public Enemy2(Texture2D texture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)

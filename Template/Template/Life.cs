@@ -8,7 +8,7 @@ namespace Template
     class Life: Item
     {
         ///<summary>
-        ///KOnstruktor för liv
+        ///Konstruktor för liv
         ///</summary>
         ///<param name="texture">textur för livet</param>
         ///<param name="position">Position för livet</param>

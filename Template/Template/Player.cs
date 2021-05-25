@@ -26,22 +26,22 @@ namespace Template
         protected Stopwatch invincibleTimer = new Stopwatch();
         protected float invincibleTime = 10000f;
 
-	//Textur och lista för skotten
+	    //Textur och lista för skotten
         protected Texture2D bulletTexture;
         protected List<Bullet> bulletList = new List<Bullet>();
-
-	//Används för att kolla vilka tangenter som trycks ner
+    
+	    //Används för att kolla vilka tangenter som trycks ner
         protected KeyboardState kNewState;
         protected KeyboardState kOldState;
 
         protected KeyboardState kNewStateItem;
         protected KeyboardState kOldStateItem;
 
-	///<summary>
+	    ///<summary>
         ///Konstruktor för spelaren
         ///</summary>
         ///<param name="texture">textur för spelaren</param>
-	///<param name="bulletTexture">Textur för kulorna</param>
+	    ///<param name="bulletTexture">Textur för kulorna</param>
         ///<param name="position">Position för spelaren</param>
         ///<param name="rectangle">Hitbox för spelaren</param>
         public Player(Texture2D texture, Texture2D bulletTexture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
@@ -52,40 +52,40 @@ namespace Template
             this.rectangle = rectangle;
         }
 
-	//Ger skottlistan
+	    //Ger skottlistan
         public List<Bullet> BulletList
         {
             get { return bulletList; }
         }
 
-	///<summary>
-	///Lägger till ett liv
-	///</summary>
+    	///<summary>
+	    ///Lägger till ett liv
+	    ///</summary>
         private void AddLife()
         {
             Lives.lives++;
         }
 
-	///<summary>
-	///Lägger till ett poäng
-	///</summary>
+	    ///<summary>
+	    ///Lägger till ett poäng
+	    ///</summary>
         public void AddPoint()
 		{
             Points.points++;
 		}
 
-	///<summary>
-	///Aktiverar multibullet
-	///</summary>
+	    ///<summary>
+	    ///Aktiverar multibullet
+	    ///</summary>
         private void ActivateMultiBullet()
         {
             multiBulletActive = true;
             multiBulletTimer.Start();
         }
 
-	///<summary>
-	///Avaktiverar multibullet
-	///</summary>
+	    ///<summary>
+	    ///Avaktiverar multibullet
+	    ///</summary>
         private void DeactivateMultiBullet()
         {
             multiBulletActive = false;
@@ -93,18 +93,18 @@ namespace Template
             multiBulletTimer.Reset();   
         }
 
-	///<summary>
-	///Akriverar sköld
-	///</summary>
+	    ///<summary>
+	    ///Aktiverar sköld
+	    ///</summary>
         private void ActivateShield()
 		{
             invincible = true;
             invincibleTimer.Start();
 		}
 
-	///<summary>
-	///Avaktiverar sköld
-	///</summary>
+	    ///<summary>
+	    ///Avaktiverar sköld
+	    ///</summary>
         private void DeactivateShield()
 		{
             invincible = false;
@@ -112,19 +112,15 @@ namespace Template
             invincibleTimer.Reset();
 		}
 
-	
-	///<summary>
-	///Skadar spelaren om den inte är odödlig
-	///</summary>
         public void Damage()
         {
             if (!invincible)
                 Lives.lives--;
         }
 
-	///<summary>
-	///Flyttar och roterar spelaren
-	///</summary>
+    	///<summary>
+	    ///Flyttar och roterar spelaren
+	    ///</summary>
         private void Move()
         {
             kNewState = Keyboard.GetState();
@@ -143,14 +139,11 @@ namespace Template
                 rotation -= rotationSpeed;
         }
 
-	///<summary>
-	///Används så att spelaren ska kunna skjuta
-	///</summary>
         public void Shoot()
         {
             kNewState = Keyboard.GetState();
 
-	    //Så att man inte kan hålla nere space och skjuta hela tiden
+	        //Så att man inte kan hålla nere space och skjuta hela tiden
             if (kNewState.IsKeyDown(Keys.Space) && kOldState.IsKeyUp(Keys.Space))
             {
                 //Om multibullet inte är aktiverat skjuts ett skott
@@ -173,14 +166,14 @@ namespace Template
             kOldState = kNewState;
         }
 
-	///<summary>
-	///Använder det item som är först i kön
-	///</summary>
+	    ///<summary>
+	    ///Använder det item som är först i kön
+	    ///</summary>
         private void UseItem()
         {
             kNewStateItem = Keyboard.GetState();
 
-	    //Så att man bara använder 1 item åt gången
+	        //Så att man bara använder 1 item åt gången
             if (kNewStateItem.IsKeyDown(Keys.Enter) && kOldStateItem.IsKeyUp(Keys.Enter)) 
             {
                 //Om kön inte är tom
@@ -221,7 +214,7 @@ namespace Template
             if (invincibleTimer.ElapsedMilliseconds > invincibleTime)
                 DeactivateShield();
             
-	    //Flyttar hitboxen till rätt position
+	        //Flyttar hitboxen till rätt position
             rectangle.Location = position.ToPoint();
         }
 

@@ -9,10 +9,10 @@ namespace Template
 {
     static class EnemyListClass
     {
-	//Fiendelista
+	    //Fiendelista
         public static List<EnemyClass> enemyList = new List<EnemyClass>();
 
-	//Textur för fiendena och kulorna i Enemy3s skottlista
+	    //Textur för fiendena och kulorna i Enemy3s skottlista
         public static Texture2D enemyTexture;
         public static Texture2D bulletTexture;
 
@@ -22,11 +22,12 @@ namespace Template
         //Hur lång tid det ska ta att spawna en fiende
         public static float spawnTime = 2000;
 
-	//för att kunna få ett slumpmässigt värde
+	    //för att kunna få ett slumpmässigt värde
         public static Random random = new Random();
 
-	///<summary>
-	///Används för att spawna fiender
+	    ///<summary>
+	    ///Används för att spawna fiender
+        ///</summary>
         private static void SpawnEnemy()
         {
             //Beräknar hur stor sannolikheten ska vara att en viss fiende ska spawna
@@ -42,17 +43,17 @@ namespace Template
 
         }
 
-	///<summary>
+	    ///<summary>
         ///Startar fiendetimern
-	///</summary>
+	    ///</summary>
         public static void StartTimer()
         {
             spawnTimer.Start();
         }
 
-	///<summary>
-	///Startar om fiendetimern
-	///</summary>
+	    ///<summary>
+	    ///Startar om fiendetimern
+	    ///</summary>
         private static void RestartTimer()
         {
             spawnTimer.Stop();
@@ -61,16 +62,19 @@ namespace Template
         }
 
         ///<summary>
-	///Minskar tiden som går mellan två fiendespawns
-	///</summary>
+	    ///Minskar tiden som går mellan två fiendespawns
+    	///</summary>
         public static void DecreaseSpawnTime()
 		{
             spawnTime = spawnTime * 0.98f;
 		}
 
+        /// <summary>
+        /// Körs hela tiden och används för att spawna nya fiender och hålla koll på tiden
+        /// </summary>
         public static void Update()
         {
-	    //Spawnar fiende efter att tillräckligt lång tid har gått
+	        //Spawnar fiende efter att tillräckligt lång tid har gått
             if (spawnTimer.ElapsedMilliseconds > spawnTime)
             {
                 SpawnEnemy();

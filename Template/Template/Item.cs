@@ -14,7 +14,7 @@ namespace Template
         ///<summary>
         ///Konstruktor för item
         ///</summary>
-        ///<param name="texture">Texture för item</param>
+        ///<param name="texture">Textur för item</param>
         ///<param name="position">Position för item</param>
         ///<param name="rectangle">Hitbox för item</param>
         public Item(Texture2D texture, Vector2 position, Rectangle rectangle):base(texture, position, rectangle)

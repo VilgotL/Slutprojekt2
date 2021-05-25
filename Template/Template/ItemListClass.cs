@@ -9,10 +9,10 @@ namespace Template
 {
     static class ItemListClass
     {
-	//Itemlista
+    	//Itemlista
         public static List<Item> itemList = new List<Item>();
 
-	//Texturer för de olika itemsen
+	    //Texturer för de olika itemsen
         public static Texture2D lifeTexture;
         public static Texture2D multiBulletTexture;
         public static Texture2D shieldTexture;
@@ -29,11 +29,11 @@ namespace Template
         //Tid det ska ta mellan item spawns
         public static float spawnTime = 8320f;
 
-	//Används för att generera ett slumpmässigt värde
+	    //Används för att generera ett slumpmässigt värde
         public static Random random = new Random();
 
-	///<summary>
-	///Används för att spawna ett item
+	    ///<summary>
+	    ///Används för att spawna ett item
         ///</summary>
         public static void SpawnItem()
         {
@@ -49,25 +49,25 @@ namespace Template
         }
 
         ///<summary>
-	///Lägger till item i kön så länge det inte finns fler än 3 items redan i listan
-	///</summary>
+	    ///Lägger till item i kön så länge det inte finns fler än 3 items redan i listan
+	    ///</summary>
         public static void AddItem(Item item)
         {
             if (itemQueue.Count < 3)
                 itemQueue.Enqueue(item);
         }
 
-	///<summary>
-	///Startar itemtimern
-	///</summary>
+	    ///<summary>
+	    ///Startar itemtimern
+	    ///</summary>
         public static void StartTimer()
         {
             spawnTimer.Start();
         }
 
-	///<summary>
-	///Startar om itemtimern
-	///</summary>
+	    ///<summary>
+	    ///Startar om itemtimern
+	    ///</summary>
         public static void RestartTimer()
         {
             spawnTimer.Stop();
@@ -75,6 +75,9 @@ namespace Template
             spawnTimer.Start();
         }
 
+        /// <summary>
+        /// Körs hela tiden och används för att spawna items och hålla koll på tiden
+        /// </summary>
         public static void Update()
         {
             //Spawnar item efter en viss tid
@@ -85,11 +88,13 @@ namespace Template
             }
         }
 
-        //Ritar ut första itemet i kön
+        /// <summary>
+        /// Ritar ut första itemet i kön
+        /// </summary>
         public static void Draw(SpriteBatch spriteBatch)
 		{
             if (itemQueue.Count > 0)
-			{
+			{ 
                 if (itemQueue.Peek() is Life)
                     spriteBatch.Draw(lifeTexture, queuePosition, Color.White);
                 else if (itemQueue.Peek() is MultiBullet)

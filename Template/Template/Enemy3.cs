@@ -21,7 +21,7 @@ namespace Template
         ///<summary>
         ///Konstruktor för Enemy3
         ///</summary>
-        ///<param name="texture">Texture för fienden</param>
+        ///<param name="texture">Textur för fienden</param>
         ///<param name="bulletTexture">Textur för kulorna</param>
         ///<param name="position">Position för fienden</param>
         ///<param name="rectangle">Hitbox för fienden</param>
@@ -57,9 +57,6 @@ namespace Template
             shootTimer.Start();
         }
 
-        ///<summary>
-        ///Gör så att fienden skjuter
-        ///</summary>
         public void Shoot()
         {
             //Skjuter om det har gått 1 sekund sedan förra skottet
