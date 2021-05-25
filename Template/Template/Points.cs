@@ -14,14 +14,19 @@ namespace Template
 		public static Vector2 pointsPosition;
 		public static Vector2 highScorePosition;
 
+		//Typsnitt för texten
 		public static SpriteFont font;
 
+		//Filläsare och filskrivare
 		public static BinaryReader br;
 		public static BinaryWriter bw;
 
+		//Högsta poäng
 		public static int highScore;
 
-		//Läser in high score
+		///<summary>
+		///Läser in high score
+		///</summary>
 		public static void ReadHighScore()
 		{
 			br = new BinaryReader(new FileStream("Fil.tim", FileMode.OpenOrCreate, FileAccess.Read));
@@ -29,9 +34,12 @@ namespace Template
 			br.Close();
 		}
 
-		//Sparar high score
+		///<summary>
+		///Sparar high score
+		///</summary>
 		public static void WriteHighScore()
 		{
+			//Om antalet poäng är fler än high score sparas poängen som nytt high score
 			if (points > highScore)
 			{
 				bw = new BinaryWriter(new FileStream("Fil.tim", FileMode.OpenOrCreate, FileAccess.Write));
@@ -41,7 +49,9 @@ namespace Template
 
 		}
 
-		//Ritar ut poäng och high score
+		///<summary>
+		///Ritar ut poäng och high score
+		///</summary>
 		public static void Draw(SpriteBatch spriteBatch)
 		{
 			spriteBatch.DrawString(font, "Points: " + points.ToString(), pointsPosition, Color.Black);
