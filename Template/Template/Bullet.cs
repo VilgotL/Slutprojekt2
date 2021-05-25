@@ -7,12 +7,22 @@ namespace Template
 {
     class Bullet : BaseClass, IDamageable
     {
+        //Hastighet på x-axeln, y-axeln samt total hastighet.
         protected double xSpeed;
         protected double ySpeed;
         protected float totalSpeed;
 
+        //vinkeln för skottet
         protected float angle;
 
+        ///<summary>
+        ///Konstruktor för bullet
+        ///</summary>
+        ///<param name="texture"> texturen för kulan </param>
+        ///<param name="position">Positionen för kulan</param>
+        ///<param name="rectangle">hitbox för kulan</param>
+        ///<param name="angle">Lutning som används för att bestämma skottets vinkel</param>
+        ///<param name="totalSpeed">Skottets totala hastighet, används för att beräkna korrekt x- och y-hastighet beroende på vinkeln</param>
         public Bullet(Texture2D texture, Vector2 position, Rectangle rectangle, float angle, float totalSpeed) :base(texture, position, rectangle)
         {
             this.texture = texture;
@@ -22,6 +32,9 @@ namespace Template
             this.totalSpeed = totalSpeed;
         }
 
+        ///<summary>
+        ///Används för att skottet ska kunna röra sig
+        ///</summary>
         private void Move()
         {
             //Ändrar hastigheten på x och y beroende på vinkeln
@@ -35,6 +48,9 @@ namespace Template
             rectangle.Location = position.ToPoint();
         }
 
+        ///<summary>
+        ///Gör skada på skottet (tar bort det)
+        ///</summary>
         public void Damage()
         {
             //Tar bort 
@@ -42,9 +58,11 @@ namespace Template
             position = new Vector2(1000, 800);
         }
 
+        
         public override void Update()
         {
             Move();
+            //Flyttar hitboxen till rätt position
             rectangle.Location = position.ToPoint();
         }
 
