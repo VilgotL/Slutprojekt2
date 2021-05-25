@@ -7,13 +7,18 @@ namespace Template
 {
 	static class Lives
 	{
+		//Antal liv
 		public static int lives = 3;
 
+		//Position för texten
 		public static Vector2 position;
 
+		//Textens typsnitt
 		public static SpriteFont font;
 
-		//Ritar ut antalet liv
+		///<summary>
+		///Ritar ut antalet liv
+		///</summary>
 		public static void Draw(SpriteBatch spriteBatch)
 		{
 			spriteBatch.DrawString(font, "Lives: " + lives.ToString(), position, Color.Black);
