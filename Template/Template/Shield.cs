@@ -7,6 +7,12 @@ namespace Template
 {
     class Shield : Item
     {
+        ///<summary>
+        ///KOnstruktor för sköld
+        ///</summary>
+        ///<param name="texture">textur för sköld</param>
+        ///<param name="position">Position för sköld</param>
+        ///<param name="rectangle">Hitbox för sköld</param>
         public Shield(Texture2D texture, Vector2 position, Rectangle rectangle) : base(texture, position, rectangle)
         {
             this.texture = texture;
