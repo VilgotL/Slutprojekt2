@@ -7,6 +7,12 @@ namespace Template
 {
     class Life: Item
     {
+        ///<summary>
+        ///KOnstruktor för liv
+        ///</summary>
+        ///<param name="texture">textur för livet</param>
+        ///<param name="position">Position för livet</param>
+        ///<param name="rectangle">Hitbox för livet</param>
         public Life(Texture2D texture, Vector2 position, Rectangle rectangle):base(texture, position, rectangle)
         {
             this.texture = texture;
